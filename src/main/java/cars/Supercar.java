@@ -1,6 +1,7 @@
 package cars;
 
 import enam.WheelTypes;
+import exception.InputValueRuntimeException;
 import interfaces.PassengerCapacity;
 
 import java.util.Objects;
@@ -25,8 +26,8 @@ public class Supercar extends Car implements PassengerCapacity {
     }
 
     @Override
-    public void drive() {
-        System.out.println("Super car is driving...");
+    public String drive() {
+        return "Super car is driving...";
     }
 
     @Override
@@ -51,7 +52,7 @@ public class Supercar extends Car implements PassengerCapacity {
         return Objects.hash(isCabriolet, numberOfPassengers);
     }
 
-    public static class Builder{
+    public static class Builder {
         private int weight;
         private String color;
         private Engine engine;
@@ -60,11 +61,11 @@ public class Supercar extends Car implements PassengerCapacity {
         private int numberOfPassengers;
 
         public Builder setWeight(int weight) {
-            if(weight>100){
+            if (weight > 100) {
                 this.weight = weight;
                 return this;
             }
-           throw new RuntimeException("Weight can't be less than 100kg");
+            throw new InputValueRuntimeException("Weight can't be less than 100kg");
         }
 
         public Builder setColor(String color) {
@@ -88,14 +89,14 @@ public class Supercar extends Car implements PassengerCapacity {
         }
 
         public Builder setNumberOfPassengers(int numberOfPassengers) {
-            if(numberOfPassengers>0) {
+            if (numberOfPassengers > 0) {
                 this.numberOfPassengers = numberOfPassengers;
                 return this;
             }
-            throw new RuntimeException("Number of passengers can't be less than 1");
+            throw new InputValueRuntimeException("Number of passengers can't be less than 1");
         }
 
-        public Supercar build(){
+        public Supercar build() {
             return new Supercar(this);
         }
     }

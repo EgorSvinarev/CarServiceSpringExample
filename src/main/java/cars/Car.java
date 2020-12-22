@@ -1,6 +1,7 @@
 package cars;
 
 import enam.WheelTypes;
+import exception.InputValueRuntimeException;
 
 public abstract class Car {
     private int weight;
@@ -8,10 +9,10 @@ public abstract class Car {
     private Engine engine;
     private WheelTypes wheelType;
 
-    public Car() {
+    protected Car() {
     }
 
-    public Car(int weight, String color, WheelTypes wheelType, Engine engine) {
+    protected Car(int weight, String color, WheelTypes wheelType, Engine engine) {
         this.weight = weight;
         this.color = color;
         this.engine = engine;
@@ -27,7 +28,7 @@ public abstract class Car {
             this.weight = weight;
             return;
         }
-        throw new RuntimeException("Weight can't be less then 100");
+        throw new InputValueRuntimeException("Weight can't be less then 100");
     }
 
     public String getColor() {
@@ -54,10 +55,10 @@ public abstract class Car {
         this.wheelType = wheelType;
     }
 
-    public abstract void drive();
+    public abstract String drive();
 
     public double accelerationTimeTo100() {
-        int time = Math.round(weight / engine.getHorsepower());
+        int time = weight / engine.getHorsepower();
         return wheelType.isForFastDriving() ? time : time * 1.2;
     }
 

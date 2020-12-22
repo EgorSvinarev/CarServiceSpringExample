@@ -1,8 +1,10 @@
 package cars;
 
 import enam.WheelTypes;
+import exception.InputValueRuntimeException;
 import interfaces.LiftingCapacity;
 import interfaces.PassengerCapacity;
+import org.apache.log4j.*;
 
 public class Jeep extends Car implements PassengerCapacity, LiftingCapacity {
     private int maxLiftingCapacity;
@@ -22,7 +24,7 @@ public class Jeep extends Car implements PassengerCapacity, LiftingCapacity {
             this.maxLiftingCapacity = maxLiftingCapacity;
             return;
         }
-        throw new RuntimeException("Max lifting capacity can;t be less then 50");
+        throw new InputValueRuntimeException("Max lifting capacity can;t be less then 50");
     }
 
     public void setNumberOfPassengers(int numberOfPassengers) {
@@ -30,7 +32,7 @@ public class Jeep extends Car implements PassengerCapacity, LiftingCapacity {
             this.numberOfPassenger = numberOfPassengers;
             return;
         }
-        throw new RuntimeException("Number of passengers can't be less than 1");
+        throw new InputValueRuntimeException("Number of passengers can't be less than 1");
     }
 
     @Override
@@ -44,8 +46,8 @@ public class Jeep extends Car implements PassengerCapacity, LiftingCapacity {
     }
 
     @Override
-    public void drive() {
-        System.out.println("Jeep is driving...");
+    public String drive() {
+        return "Jeep is driving...";
     }
 
     @Override

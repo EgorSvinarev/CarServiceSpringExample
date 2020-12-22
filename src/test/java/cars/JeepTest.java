@@ -1,6 +1,5 @@
 package cars;
 
-import cars.Jeep;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

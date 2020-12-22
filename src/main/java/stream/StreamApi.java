@@ -31,19 +31,19 @@ public class StreamApi {
     public int findAllSupercarWeight() {
         return listCar.stream()
                 .filter(e -> e.getClass() == Supercar.class)
-                .mapToInt(e -> e.getWeight())
+                .mapToInt(Car::getWeight)
                 .sum();
     }
 
     public Car findMaxCarEnginePower() {
         return listCar.stream()
-                .max(Comparator.comparingInt(e -> e.getEngine().getHorsepower())) // Шукаємо максимальне значення хорсавер
-                .get(); // Повертаємо об'єкт Car
+                .max(Comparator.comparingInt(e -> e.getEngine().getHorsepower()))// Шукаємо максимальне значення хорсавер
+                .orElse(null);
     }
 
     public double findAverageWeight() {
         return listCar.stream()
-                .mapToInt(e -> e.getWeight())
+                .mapToInt(Car::getWeight)
                 .average().orElseThrow(NoSuchElementException::new);
     }
 

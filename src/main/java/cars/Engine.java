@@ -1,5 +1,7 @@
 package cars;
 
+import exception.InputValueRuntimeException;
+
 import java.util.Objects;
 
 public class Engine {
@@ -21,11 +23,11 @@ public class Engine {
     }
 
     public void setHorsepower(int horsepower) {
-        if(horsepower>0){
+        if (horsepower > 0) {
             this.horsepower = horsepower;
             return;
         }
-        throw new RuntimeException("Horsepower can't be less than 1");
+        throw new InputValueRuntimeException("Horsepower can't be less than 1");
     }
 
     public int getMaxSpeed() {
@@ -33,11 +35,11 @@ public class Engine {
     }
 
     public void setMaxSpeed(int maxSpeed) {
-        if(maxSpeed>=10){
+        if (maxSpeed >= 10) {
             this.maxSpeed = maxSpeed;
             return;
         }
-       throw new RuntimeException("Max speed can't be less than 10");
+        throw new InputValueRuntimeException("Max speed can't be less than 10");
     }
 
     public int getNumberOfGears() {
@@ -45,11 +47,11 @@ public class Engine {
     }
 
     public void setNumberOfGears(int numberOfGears) {
-        if(numberOfGears>0){
+        if (numberOfGears > 0) {
             this.numberOfGears = numberOfGears;
             return;
         }
-        throw new RuntimeException("Number of gears can't be less than 1");
+        throw new InputValueRuntimeException("Number of gears can't be less than 1");
     }
 
     @Override
