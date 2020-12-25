@@ -6,6 +6,8 @@ import interfaces.LiftingCapacity;
 import interfaces.PassengerCapacity;
 import org.apache.log4j.*;
 
+import java.util.Objects;
+
 public class Jeep extends Car implements PassengerCapacity, LiftingCapacity {
     private int maxLiftingCapacity;
     private int numberOfPassenger;
@@ -48,6 +50,20 @@ public class Jeep extends Car implements PassengerCapacity, LiftingCapacity {
     @Override
     public String drive() {
         return "Jeep is driving...";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Jeep jeep = (Jeep) o;
+        return maxLiftingCapacity == jeep.maxLiftingCapacity &&
+                numberOfPassenger == jeep.numberOfPassenger;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(maxLiftingCapacity, numberOfPassenger);
     }
 
     @Override

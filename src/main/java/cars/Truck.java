@@ -5,6 +5,7 @@ import exception.IncorrectEnteredValueException;
 import exception.InputValueRuntimeException;
 import interfaces.LiftingCapacity;
 
+import java.awt.*;
 import java.util.Objects;
 
 public class Truck extends Car implements LiftingCapacity {
