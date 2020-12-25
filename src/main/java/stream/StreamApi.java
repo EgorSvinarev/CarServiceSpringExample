@@ -23,7 +23,7 @@ public class StreamApi {
     }
 
     public List<Car> findAllSupercar() {
-        return listCar.stream()
+        return getListCar().stream()
                 .filter(e -> e.getClass() == Supercar.class)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
