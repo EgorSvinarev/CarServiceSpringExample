@@ -2,6 +2,7 @@ package cars;
 
 import enam.WheelTypes;
 import exception.IncorrectEnteredValueException;
+import exception.InputValueRuntimeException;
 import interfaces.LiftingCapacity;
 
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class Truck extends Car implements LiftingCapacity {
             this.maxLiftingCapacity = maxLiftingCapacity;
             return;
         }
-        throw new RuntimeException("Max lifting capacity can't be less then 50");
+        throw new InputValueRuntimeException("Max lifting capacity can't be less then 50");
     }
 
     public boolean isHasTrailer() {
@@ -49,8 +50,8 @@ public class Truck extends Car implements LiftingCapacity {
     }
 
     @Override
-    public void drive() {
-        System.out.println("Truck is driving...");
+    public String drive() {
+        return "Truck is driving...";
     }
 
     @Override
