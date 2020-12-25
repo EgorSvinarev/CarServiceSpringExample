@@ -96,6 +96,24 @@ public class Supercar extends Car implements PassengerCapacity {
             throw new InputValueRuntimeException("Number of passengers can't be less than 1");
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Builder builder = (Builder) o;
+            return weight == builder.weight &&
+                    isCabriolet == builder.isCabriolet &&
+                    numberOfPassengers == builder.numberOfPassengers &&
+                    Objects.equals(color, builder.color) &&
+                    Objects.equals(engine, builder.engine) &&
+                    wheelType == builder.wheelType;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(weight, color, engine, wheelType, isCabriolet, numberOfPassengers);
+        }
+
         public Supercar build() {
             return new Supercar(this);
         }

@@ -3,11 +3,15 @@ package cars;
 import enam.WheelTypes;
 import exception.InputValueRuntimeException;
 
+import java.awt.*;
+import java.util.Objects;
+
 public abstract class Car {
     private int weight;
     private String color;
     private Engine engine;
     private WheelTypes wheelType;
+    private Color colorAwt;
 
     protected Car() {
     }
@@ -55,6 +59,14 @@ public abstract class Car {
         this.wheelType = wheelType;
     }
 
+    public Color getColorAwt() {
+        return colorAwt;
+    }
+
+    public void setColorAwt(Color colorAwt) {
+        this.colorAwt = colorAwt;
+    }
+
     public abstract String drive();
 
     public double accelerationTimeTo100() {
@@ -70,5 +82,19 @@ public abstract class Car {
         return stringBuilderCar.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return weight == car.weight &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(engine, car.engine) &&
+                wheelType == car.wheelType;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(weight, color, engine, wheelType);
+    }
 }
