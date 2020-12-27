@@ -16,9 +16,9 @@ public class CarService {
         return streamApi.findAllSupercar() == null ? false : streamApi.findAllSupercar().size() != 0;
     }
 
-    public int getMaxEngineHorsePower() {
+    public Engine getEngineWithMaxHorsePower() {
         if (streamApi.findMaxCarEnginePower() != null) {
-            return streamApi.findMaxCarEnginePower().getEngine().getHorsepower();
+            return streamApi.findMaxCarEnginePower().getEngine();
         }
         throw new NoSuchElementException("No such object exists!");
     }

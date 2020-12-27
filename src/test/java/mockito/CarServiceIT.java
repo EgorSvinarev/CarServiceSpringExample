@@ -22,6 +22,7 @@ public class CarServiceIT {
 
     private CarService carService;
     private static Supercar supercar;
+    private static Engine supercarEngine;
     private static Jeep jeep;
 
     public CarServiceIT() {
@@ -31,7 +32,7 @@ public class CarServiceIT {
 
     @BeforeClass
     public static void initialization() {
-        Engine supercarEngine = new Engine(700, 340, 7);
+        supercarEngine = new Engine(700, 340, 7);
         Engine jeepEngine = new Engine(250, 160, 5);
         supercar = new Supercar.Builder()
                 .setWeight(1300)
@@ -59,13 +60,13 @@ public class CarServiceIT {
     @Test
     public void getEngineWithMaxHorsePower_CarValue_EqualsTrue() {
         given(streamApi.findMaxCarEnginePower()).willReturn(supercar);
-        Assert.assertEquals(700, carService.getMaxEngineHorsePower());
+        Assert.assertEquals(supercarEngine, carService.getEngineWithMaxHorsePower());
     }
 
     @Test(expected = NoSuchElementException.class)
     public void getEngineWithMaxHorsePower_NullValue_Exception() {
         given(streamApi.findMaxCarEnginePower()).willReturn(null);
-        carService.getMaxEngineHorsePower();
+        carService.getEngineWithMaxHorsePower();
     }
 
     @Test
@@ -80,5 +81,4 @@ public class CarServiceIT {
         given(streamApi.findAllSupercarWeight()).willReturn(-1000);
         carService.findSumOfSupercarsWeight();
     }
-
 }
